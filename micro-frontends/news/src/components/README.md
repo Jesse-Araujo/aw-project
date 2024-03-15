@@ -1,18 +1,23 @@
 ## Views
 
-1. News List
-2. News
+1. News Feed
+2. Article Details
 3. Stats
 
 ## FE Services
 
-News List:
+News Feed:
 
 - UpdateNews
 - onClickCard
 - ReadMore
-- VerticalScroll
 - Stats (view)
+- BackButton
+
+Article Details:
+
+- GetArticleDetails
+- GetRelatedProducts
 - BackButton
 
 Stats:

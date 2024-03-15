@@ -39,12 +39,19 @@ Forgot Password:
 Account:
 
 - Add Photo
-- 
+- CustomerSupport (view)
+- Settings (view)
+- Profile (view)
+- Logout -> Sign in (view)
+- BackButton
+
 
 Profile:
 
-(...)
+- GetAccountDetails
+- UpdateAccountDetails
 
 Settings:
 
-(...)
+- GetAccountSettings
+- UpdateAccountSettings
