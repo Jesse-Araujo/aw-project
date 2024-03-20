@@ -1,4 +1,4 @@
-## Title: Login Micro-Frontend Decision
+## Title: Auth Micro-Frontend Decision
 
 ## Context:
 Project demands a streamlined, modular approach for user authentication.
