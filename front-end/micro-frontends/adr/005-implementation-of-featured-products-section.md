@@ -1,10 +1,10 @@
-## Title: Implementation of Featured Products Section
+## Title: Implementation of Featured Products Section on Menu Micro-Frontend.
 
 ## Context:
 The application homepage requires a section to showcase featured products. This section will display a curated selection of products that are highlighted for promotional or strategic purposes.
 
 ## Decision:
-Implement a Featured Products section as part of the main frontend application rather than as a separate microfrontend.
+Implement a Featured Products section as part of the menu frontend application rather than as a separate microfrontend.
 
 ## Rationale:
 
