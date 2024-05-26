@@ -1,0 +1,582 @@
+openapi: 3.0.0
+info:
+  description: |
+    This is a sample AW API
+  version: "1.0.0"
+  title: Swagger Supermarket
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/JESSEDEVELOPERMASTER/AW_API/1.0.0
+  - url: 'https://petstore.swagger.io/v2'
+tags:
+  - name: User_Service
+    description: Manage system users
+  - name: Product_Service
+    description: Manage system Products
+  - name: Supermarket_Service
+    description: Manages the supermarkets in the systems and products
+  - name: News_Service
+    description: List all news in system
+  - name: Statistics_Service
+    description: List all statistics in the system
+  - name: Rating_Service
+    description: Manages user ratings
+  - name: Favorite_Service
+    description: Lists and manages user products favorites
+paths:
+  /user:
+    post:
+      tags:
+        - User_Service
+      summary: Add a new user
+      operationId: addPet
+      responses:
+        '405':
+          description: Invalid input
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      requestBody:
+        content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    get:
+      tags:
+        - User_Service
+      summary: Get Info User
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '200':
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/User'
+  '/user/{user_id}':
+    get:
+      tags:
+        - User_Service
+      summary: Find User By Id
+      parameters:
+        - name: user_id
+          in: path
+          description: ID of User
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid Id
+    put:
+      tags:
+        - User_Service
+      summary: Update User By Id
+      parameters:
+        - name: user_id
+          in: path
+          description: ID of User
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid Id
+  /products:
+    get:
+      tags:
+        - Product_Service
+      summary: Finds Products
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Products'
+    post:
+      tags:
+        - Product_Service
+      summary: Create Products
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+        '400':
+          description: Invalid input  
+      requestBody:
+        content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+  '/products/{product_id}':
+    get:
+      tags:
+        - Product_Service
+      summary: Find product by ID
+      description: Returns a single product
+      parameters:
+        - name: product_id
+          in: path
+          description: ID of product
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+        '404':
+          description: Pet not found
+    put:
+      tags:
+        - Product_Service
+      summary: Updates a product
+      parameters:
+        - name: product_id
+          in: path
+          description: ID of product
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+        '404':
+          description: Pet not found
+      requestBody:
+        content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+    delete:
+      tags:
+        - Product_Service
+      summary: Deletes a product
+      parameters:
+        - name: product_id
+          in: path
+          description: ID of product
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '404':
+          description: product not found
+        '200':
+          description: successful operation
+  /products/category:
+    post:
+      tags:
+        - Product_Service
+      summary: Create category Product
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+      requestBody:
+        content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+  '/products/category/{cat_id}':
+    get:
+      tags:
+        - Product_Service
+      summary: List all product of category
+      parameters:
+        - name: cat_id
+          in: path
+          description: ID of category
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/Products'
+  /Supermarket:
+    post:
+      tags:
+        - Supermarket_Service
+      summary: Create a Supermarket
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Supermarket'
+        '400':
+          description: Invalid Order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Supermarket'
+        required: true
+  '/Supermarket/{supermarket_id}':
+    get:
+      tags:
+        - Supermarket_Service
+      summary: Find Supermarket By ID
+      parameters:
+        - name: supermarket_id
+          in: path
+          description: ID of Supermarket
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Supermarket'
+        '404':
+          description: Supermarket not found
+    delete:
+      tags:
+        - Supermarket_Service
+      summary: Delete purchase order by ID
+      parameters:
+        - name: supermarket_id
+          in: path
+          description: ID of Supermarket
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+        '404':
+          description: Supermarket not found
+    put:
+      tags:
+        - Supermarket_Service
+      summary: Delete Supermarket by ID
+      parameters:
+        - name: supermarket_id
+          in: path
+          description: ID of Supermarket
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Supermarket'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Supermarket'  
+        '404':
+          description: Supermarket not found
+  '/supermarket/{supermarket_id}/category/{cat_id}/products':
+    get:
+      tags: 
+        - Supermarket_Service
+      summary: get supermarket products by category
+      parameters:
+        - name: supermarket_id
+          in: path
+          description: ID of Supermarket
+          required: true
+          schema:
+            type: string
+        - name: cat_id
+          in: path
+          description: ID of Cat
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: supermarket not found
+  /news:
+    post:
+      tags:
+        - News_Service
+      summary: Create New
+      responses:
+        '200':
+          description: successful operation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/News'
+        description: Created New object
+        required: true
+    get:
+      tags:
+        - News_Service
+      summary: Get News
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/News'
+  '/news/{new_id}':
+    get:
+      tags:
+        - News_Service
+      summary: Get New by ID
+      parameters:
+        - name: new_id
+          in: path
+          description: ID of News
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/News'
+  /statistics:
+    get:
+      tags: 
+        - Statistics_Service
+      summary: get statistics
+      responses:
+        '200':
+          description: successful operation 
+  /rating:
+    get:
+      tags:
+        - Rating_Service
+      summary: Get ratings
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Rating' 
+        '400':
+          description: Invalid username/password supplied
+    post:
+      tags: 
+        - Rating_Service
+      summary: Create new ratings for product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Rating'
+        description: Created New object
+        required: true
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rating'
+        '400':
+          description: Invalid Rating
+  '/rating/product/{product_id}':
+    get:
+      tags:
+        - Rating_Service
+      summary: Get rating for an product
+      parameters:
+        - name: product_id
+          in: path
+          description: ID of product
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rating'
+  /favorites:
+    post:
+      tags: 
+       - Favorite_Service
+      summary: Create a new Favorite
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Favorits'
+        description: Created New object
+        required: true
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Favorits'
+  '/favorites/user/{user_id}':
+    get:
+      tags:
+        - Favorite_Service
+      summary: Get favorites for a user
+      parameters:
+        - name: user_id
+          in: path
+          description: ID of User
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Favorits'
+        '404':
+          description: User not found
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+    Products:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        produtor:
+          type: string
+        origem:
+          type: string
+        idade:
+          type: string
+        raca:
+          type: string
+        categoria:
+          $ref: '#/components/schemas/Category'
+    Category:
+      type: object
+      properties:
+        name:
+          type: string
+    Supermarket:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        andress:
+          type: string
+        distric:
+          type: string
+    News:
+      type: object
+      properties:
+        title:
+          type: string
+        new:
+          type: string
+    Favorits:
+      type: object
+      properties:
+        produts:
+          type: array
+          items:
+            type: string
+        user:
+          type: string
+    Rating:
+      type: object
+      properties:
+        stars:
+          type: integer
+          format: int64
+          minimum: 1
+          maximum: 5
+        user:
+          type: string
